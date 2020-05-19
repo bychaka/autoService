@@ -19,7 +19,6 @@ $font-raleway: 'Arial';
 
 .header {
     background: url('./images/bacground_header.png') no-repeat center center;
-    background-size: cover;
     height: 900px;
     position: relative;
     .header-logo {
@@ -36,7 +35,7 @@ $font-raleway: 'Arial';
         font-family: $font-fira-sans;
         font-style: normal;
         font-weight: 500;
-        font-size: 34px;
+        font-size: 30px;
         line-height: 43px;
         color: #FFFFFF;
     }
