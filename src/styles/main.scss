@@ -331,3 +331,30 @@ $font-raleway: 'Arial';
     line-height: 148%;
     text-align: center;
 }
+
+.goals {
+    padding: 100px 5% 10px 5%;
+    background: rgba(29, 39, 53, 0.8);
+    color: #fff;
+}
+
+.goal-item-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 45px 95px 45px;
+    .card {
+        background: none;
+        border: none;
+        img {
+            border-top: 9px solid #FFF73D;
+        }
+        .card-text {
+            margin-top: 30px;
+            font-family: $font-raleway;
+            font-size: 18px;
+            line-height: 148%;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+    }
+}
