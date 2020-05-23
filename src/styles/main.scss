@@ -358,3 +358,65 @@ $font-raleway: 'Arial';
         }
     }
 }
+
+.card-img-top {
+    height: 320px;
+}
+
+.send-order {
+    height: 720px;
+}
+
+.send-order-image {
+    min-height: 720px;
+    width: 60%;
+    background: url('./images/6.png') no-repeat center center;
+    background-size: cover;
+}
+
+.form {
+    width: 40%;
+    background: #FFF72C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 50%;
+        .form-group {
+            width: 100%;
+        }
+    }
+}
+
+.clients {
+    width: 100%;
+    height: 750px;
+    background: rgba(29, 39, 53, 0.8);
+    padding: 50px 0;
+}
+
+.form-control.contact-input {
+    border: 2px solid #9C982A;
+    background: none;
+    color: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 2px 0 0 #9C982A;
+    height: 47px;
+    margin-bottom: 30px;
+    &:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.75);
+    }
+}
+
+.btn-contact {
+    font-family: $font-raleway;
+    width: 230px;
+    height: 61px;
+    font-size: 18px;
+    line-height: 148%;
+    letter-spacing: 0.05em;
+}
