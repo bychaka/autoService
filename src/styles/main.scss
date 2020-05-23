@@ -1,9 +1,14 @@
 @import'./node_modules/reset-css/sass/reset';
 @import'./fonts.scss';
 @import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
 $main-font-family: 'Open Sans';
 $font-fira-sans: 'Arial';
 $font-raleway: 'Arial';
+$a-tags: 'a:hover, a:active';
 
 @for $index from 1 through 5 {
     .size-#{$index}{
@@ -364,6 +369,7 @@ $font-raleway: 'Arial';
 }
 
 .send-order {
+    font-family: $font-raleway;
     height: 720px;
 }
 
@@ -384,24 +390,17 @@ $font-raleway: 'Arial';
         display: flex;
         flex-direction: column;
         align-items: start;
-        width: 50%;
+        width: 60%;
         .form-group {
             width: 100%;
         }
     }
 }
 
-.clients {
-    width: 100%;
-    height: 750px;
-    background: rgba(29, 39, 53, 0.8);
-    padding: 50px 0;
-}
-
 .form-control.contact-input {
     border: 2px solid #9C982A;
     background: none;
-    color: rgba(0, 0, 0, 0.55);
+    color: rgba(0, 0, 0, 0.7);
     box-shadow: 0 2px 0 0 #9C982A;
     height: 47px;
     margin-bottom: 30px;
@@ -412,11 +411,177 @@ $font-raleway: 'Arial';
     }
 }
 
+.form-group {
+    .order-description {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .order-title {
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 35px;
+        color: #000000;
+    }
+}
+
 .btn-contact {
-    font-family: $font-raleway;
     width: 230px;
     height: 61px;
     font-size: 18px;
     line-height: 148%;
     letter-spacing: 0.05em;
+    border-bottom: 4px solid #DBD5D5;
+}
+
+.clients {
+    font-family: $font-raleway;
+    width: 100%;
+    height: 750px;
+    background: rgba(29, 39, 53, 0.8);
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+.title-wrap {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #FFFFFF;
+}
+.section-title {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 148%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0 40px 25px 40px;
+}
+
+.text-yellow {
+    color: #FFF72C;
+}
+
+.partners {
+    font-family: $font-raleway;
+    width: 100%;
+    height: 420px;
+    background: #F2EEEE;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+    .section-title {
+        padding: 0;
+    }
+    .title-wrap {
+        border: none;
+        margin-bottom: 50px;
+    }
+}
+
+.footer-page {
+    height: 350px;
+    background: #12171D;
+    color: #fff;
+    padding: 50px 10%;
+}
+
+.footer-social {
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    height: 80px;
+    width: 100%;
+    background: url('./images/logo.svg') no-repeat;
+    background-size: contain;
+}
+
+.footer-social-description {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 125.5%;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.icon {
+    display: flex;
+    background: #666666;
+    width: 42px;
+    height: 42px;
+    border-radius:50%;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.social-links-footer {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    .icon {
+        margin-right: 15px;
+    }
+    #{$a-tags} {
+        color: #FFF72C;
+        text-decoration: none;
+    }
+}
+
+.block-links {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 148%;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.link-with-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    .block-links_link {
+        color: #666;
+    }
+    #{$a-tags} {
+        color: #FFF72C;
+    }
+}
+
+.link-with-icon_icon {
+    height: 22px;
+    width: 22px;
+    background: url(./images/tire.png);
+    margin-right: 15px;
+    margin-top: 4px;
+}
+
+.address-wrap {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .address {
+        padding: 10% 0 5% 0;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+
+#map {
+    width: 100%;
+    height: 90%;
 }
