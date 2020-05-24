@@ -1,3 +1,7 @@
+@import './fonts/raleway/raleway.css';
+@import './fonts/firasans/firasans.css';
+$fa-font-path : "~@fortawesome/fontawesome-free/webfonts" !default;
+
 @font-face {
     font-family: 'Open Sans';
     src: url('/fonts/OpenSans.woff2') format('woff2'),
@@ -6,4 +10,3 @@
     font-style: normal;
 }
 
-$fa-font-path : "~@fortawesome/fontawesome-free/webfonts" !default;

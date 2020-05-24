@@ -69,6 +69,10 @@ module.exports = {
       }]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+        '$': 'jquery',
+        'jQuery': 'jquery'
+        }),
       new LiveReloadPlugin({}),
       new webpack.WatchIgnorePlugin([
         path.join(__dirname, "node_modules")

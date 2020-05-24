@@ -1,11 +1,39 @@
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
         let navIcon = document.getElementById('nav-icon');
-        console.log(navIcon);
         navIcon.onclick = function() {
             navIcon.classList.toggle('open');
         };
         init ();
+
+        $('.carousel .carousel-item').each(function(){
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            for (var i=0;i<2;i++) {
+                next=next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+
+                next.children(':first-child').clone().appendTo($(this));
+            }
+        });
+
+        $('.mc-item-wrap ul').each(function() {
+            $(this).after('<div class="mc-item-wrap-after"></div>');
+            $('.mc-item-wrap.active').children('ul').show();
+        });
+        $('.mc-toggle').click(function(){
+            $('body .mc-wrap .mc-item-wrap > ul, .mc-item-wrap-after').hide();
+            $('.mc-item-wrap').removeClass('active');
+            $(this).parent().children('ul').show();
+            $(this).parent().addClass('active');
+            $(this).parent().children('.mc-item-wrap-after').show();
+        });
     }
 };
 
