@@ -10,6 +10,10 @@ $main-font-family: 'Open Sans';
 $font-fira-sans: 'Fira Sans';
 $font-raleway: 'Raleway';
 $a-tags: 'a:hover, a:active';
+:root {
+    --base-color: rgba(255, 247, 61, 1);
+    --hover-color: rgba(0, 0, 0, 1);
+}
 
 @for $index from 1 through 5 {
     .size-#{$index}{
@@ -184,19 +188,61 @@ $a-tags: 'a:hover, a:active';
     }
 }
 
-.description-button {
+.horizontal {
     text-transform: none;
-    border: 2px solid #FFF73D;
-    box-sizing: border-box;
     width: 240px;
-    text-align: center;
-    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 70px;
+    border: 2px solid var(--base-color);
     cursor: pointer;
-    span {
+    .text {
         font-weight: 300;
         font-size: 36px;
         line-height: 148%;
         letter-spacing: 0.05em;
+        position: relative;
+        color: transparent;
+        background-image: linear-gradient(
+                        90deg,
+                        var(--hover-color) 0%,
+                        var(--hover-color) 50%,
+                        var(--base-color) 50%,
+                        var(--base-color) 100%
+        );
+        background-repeat: repeat;
+        background-size: 200%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: background-position 300ms;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--base-color);
+        transform-origin: 100% 0;
+        transform: scale3d(0, 1, 1);
+        transition: transform 300ms;
+    }
+
+    &:hover {
+        .text {
+            text-decoration: none;
+            background-position: 0 0;
+        }
+
+        &::before {
+            transform-origin: 0 0;
+            transform: scale3d(1, 1, 1);
+        }
     }
 }
 
