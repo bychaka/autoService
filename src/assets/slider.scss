@@ -1,0 +1,179 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+
+$slider-length: 3;
+$radioBtn-size: 12px;
+$btn-color: #ccc;
+$active-color: #FFF72C;
+$font-raleway: 'Arial';
+//---------------------------------------------------
+
+.slider {
+  color: #444;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: center;
+
+  *, *:before, *:after { box-sizing: border-box;}
+
+  &__nav {
+    width: $radioBtn-size;
+    height: $radioBtn-size;
+    margin: 2rem $radioBtn-size;
+    border-radius: 50%;
+    z-index: 10;
+    outline: $radioBtn-size / 2 solid $btn-color;
+    outline-offset: $radioBtn-size / -2;
+    box-shadow:
+            0 0 0 0 $active-color,
+            0 0 0 0 rgba($active-color,0);
+    cursor: pointer;
+    appearance: none;
+    backface-visibility: hidden;
+
+    &:checked {
+      animation: check 0.5s linear forwards;
+
+      @for $i from 0 to $slider-length {
+        &:nth-of-type(#{$i+1}) {
+          ~ .slider__inner {
+            transform: translateX((-100% * $i) / $slider-length);
+          }
+        }
+      }
+    }
+  }
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% * $slider-length;
+    height: 100%;
+    transition: all 1s ease-out;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  &__contents {
+    height: 100%;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex: 1;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__image {
+    font-size: 2.7rem;
+  }
+
+  &__caption {
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+  }
+
+  &__txt {
+    color: #999;
+    margin-bottom: 3rem;
+    max-width: 300px;
+  }
+}
+
+.slider-item__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+  .name {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 148%;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+  }
+  .date {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 148%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .stars {
+    display: flex;
+    justify-content: center;
+    .fa-star {
+      margin-right: 5px;
+      color:  #FFF72C;
+    }
+  }
+}
+
+.description-content {
+  font-family: $font-raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 182%;
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 3rem;
+  max-width: 1100px;
+  position: relative;
+  &:before {
+    position: absolute;
+    top: 0;
+    left: -96px;
+    content:'\201c';
+    display: block;
+    vertical-align: middle;
+    width: 96px;
+    font-size: 96px;
+    text-align: center;
+    color: #FFF73D;
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    right: -96px;
+    content:'\201d';
+    display: block;
+    vertical-align: middle;
+    width: 96px;
+    font-size: 96px;
+    text-align: center;
+    color: #FFF73D;
+  }
+}
+
+
+// animation ---------------------------
+
+@keyframes check {
+  50% {
+    outline-color: $active-color;
+    box-shadow:
+            0 0 0 $radioBtn-size $active-color,
+            0 0 0 $radioBtn-size*3 rgba($active-color,0.2);
+  }
+  100% {
+    outline-color: $active-color;
+    box-shadow:
+            0 0 0 0 $active-color,
+            0 0 0 0 rgba($active-color,0);
+  }
+}

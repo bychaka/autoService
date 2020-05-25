@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import'assets/fonts';
+@import 'assets/fonts/firasans/firasans.css';
+@import 'assets/fonts/raleway/raleway.css';
+
+$fa-font-path : "~@fortawesome/fontawesome-free/webfonts" !default;
+@import'./node_modules/reset-css/sass/reset';
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
