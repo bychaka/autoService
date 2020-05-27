@@ -1,13 +1,15 @@
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
         let navIcon = document.getElementById('nav-icon');
+        let sideBarMenu = document.getElementById('sideBarMenu');
         navIcon.onclick = function() {
             navIcon.classList.toggle('open');
+            sideBarMenu.classList.toggle('opened-menu')
         };
         init ();
 
         $('.carousel .carousel-item').each(function(){
-            var next = $(this).next();
+            let next = $(this).next();
             if (!next.length) {
                 next = $(this).siblings(':first');
             }
@@ -53,3 +55,19 @@ function init () {
         .add(new ymaps.Placemark([53.946975, 27.682178]));
 
 }
+
+$(document).ready(function(){
+  $("#sideBarMenu").on("click","a", function (event) {
+    //отменяем стандартную обработку нажатия по ссылке
+    event.preventDefault();
+
+    //забираем идентификатор бока с атрибута href
+    let id  = $(this).attr('href'),
+
+      //узнаем высоту от начала страницы до блока на который ссылается якорь
+      top = $(id).offset().top;
+
+    //анимируем переход на расстояние - top за 1500 мс
+    $('body,html').animate({scrollTop: top}, 1000);
+  });
+});
