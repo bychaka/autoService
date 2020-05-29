@@ -1,0 +1,72 @@
+<div class="form">
+
+  <ul class="tab-group">
+    <li class="tab" [ngClass]="{'active': isLoginForm}"><p (click)="tabClick($event, '#login')">Войти</p></li>
+    <li class="tab" [ngClass]="{'active': !isLoginForm}"><p  (click)="tabClick($event, '#signup')">Зарегестрироваться</p></li>
+  </ul>
+
+  <div class="tab-content">
+    <div *ngIf="isLoginForm" id="login">
+      <h1>С возвращением!</h1>
+
+      <form action="/" method="post" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+
+        <div class="field-wrap">
+          <label>
+            Email адрес<span class="req">*</span>
+          </label>
+          <input type="email" required autocomplete="off" formControlName="email"/>
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Пароль<span class="req">*</span>
+          </label>
+          <input type="password"required autocomplete="off" formControlName="password"/>
+        </div>
+
+        <!--           <p class="forgot"><a href="#">Забыли парольd?</a></p> -->
+
+        <button class="button button-block">Войти</button>
+
+      </form>
+
+    </div>
+    <div *ngIf="!isLoginForm" id="signup">
+      <h1>Создать новый профиль</h1>
+
+      <form action="/" method="post" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+
+
+        <div class="field-wrap">
+          <label>
+            Ваш никнейм<span class="req">*</span>
+          </label>
+          <input type="text" required autocomplete="off" formControlName="name"/>
+        </div>
+
+
+        <div class="field-wrap">
+          <label>
+            Email адрес<span class="req">*</span>
+          </label>
+          <input type="email"required autocomplete="off" formControlName="email"/>
+        </div>
+
+        <div class="field-wrap">
+          <label>
+            Пароль<span class="req">*</span>
+          </label>
+          <input type="password"required autocomplete="off" formControlName="password"/>
+        </div>
+
+        <button type="submit" class="button button-block">Создать Ваш профиль</button>
+
+      </form>
+
+    </div>
+
+
+  </div><!-- tab-content -->
+
+</div> <!-- /form -->
