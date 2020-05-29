@@ -30,7 +30,7 @@ body {
   font-family: 'Titillium Web', sans-serif;
 }
 
-a {
+p {
   text-decoration:none;
   color:$main;
   transition:.5s ease;
@@ -57,7 +57,7 @@ a {
     display: table;
     clear: both;
   }
-  li a {
+  li p {
     display:block;
     text-decoration:none;
     padding:15px;
@@ -74,16 +74,11 @@ a {
       color:$form-bg;
     }
   }
-  .active a {
+  .active p{
     background:$main;
     color:$form-bg;
   }
 }
-
-.tab-content > div:last-child {
-  display:none;
-}
-
 
 h1 {
   text-align:center;
@@ -93,7 +88,6 @@ h1 {
 }
 
 label {
-  position:absolute;
   transform:translateY(6px);
   left:13px;
   color:rgba($white,.5);

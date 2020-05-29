@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from "./login.service";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Router} from "@angular/router";
 declare var $: any;
 @Component({
   selector: 'app-login',
@@ -6,67 +9,50 @@ declare var $: any;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+  isLogin = true;
 
-  constructor() { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-  }
-
-  animations() {
-    $('.form').find('input, textarea').on('keyup blur focus', function (e) {
-
-      var $this = $(this),
-        label = $this.prev('label');
-
-      if (e.type === 'keyup') {
-        if ($this.val() === '') {
-          label.removeClass('active highlight');
-        } else {
-          label.addClass('active highlight');
-        }
-      } else if (e.type === 'blur') {
-        if( $this.val() === '' ) {
-          label.removeClass('active highlight');
-        } else {
-          label.removeClass('highlight');
-        }
-      } else if (e.type === 'focus') {
-
-        if( $this.val() === '' ) {
-          label.removeClass('highlight');
-        }
-        else if( $this.val() !== '' ) {
-          label.addClass('highlight');
-        }
-      }
-
+    this.loginForm = this.formBuilder.group({
+      email: [''],
+      password: ['']
+    });
+    this.registerForm = this.formBuilder.group({
+      name: [''],
+      email: [''],
+      password: ['']
     });
 
-    // $('.tab a').on('click', function (e) {
-    //
-    //   e.preventDefault();
-    //
-    //   $(this).parent().addClass('active');
-    //   $(this).parent().siblings().removeClass('active');
-    //
-    //   e.target = $(this).attr('href');
-    //
-    //   $('.tab-content > div').not(e.target).hide();
-    //
-    //   $(e.target).fadeIn(600);
-    //
-    // });
+    if (this.loginService.isLoggedIn) {
+      this.router.navigate(this.loginService.isRoleAdmin ? ['admin'] : [`user/${this.loginService.loggedUser._id}`]);
+    }
+
   }
 
-  tabClick(e) {
-    console.log(e);
-    e.preventDefault();
-      $(this).parent().addClass('active');
-      $(this).parent().siblings().removeClass('active');
-      e.target = $(this).attr('href');
-    console.log(e.target);
-    $('.tab-content > div').not(e.target).hide();
-      $(e.target).fadeIn(600);
+
+  get isLoginForm() {
+    return this.isLogin;
+  }
+
+  tabClick(e, target) {
+    this.isLogin = target === '#login';
+    $(e.target).fadeIn(600);
+  }
+
+
+  loginUser() {
+    this.loginService.login(this.loginForm.value).then(user => {
+      this.router.navigate(this.loginService.isRoleAdmin ? ['admin'] : [`user/${user._id}`]);
+    })
+  }
+
+  registerUser() {
+    this.loginService.register(this.registerForm.value).then(user => {
+      this.router.navigate([`user/${user._id}`]);
+    })
   }
 
 }

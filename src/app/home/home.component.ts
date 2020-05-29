@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import { HostListener } from '@angular/core';
+import {LocationStrategy} from "@angular/common";
 declare var $: any;
 declare var ymaps:any;
 
@@ -8,15 +10,35 @@ declare var ymaps:any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit, AfterViewInit {
+  @HostListener('window:popstate', ['$event'])
   yandexMap: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, location: LocationStrategy) {
+    location.onPopState(() => {
+      setTimeout(() => {
+        this.oldScripts();
+      })
+    });
+  }
 
   ngOnInit(): void {
-    this.oldScripts();
-    this.yandexMapsInit()
+    this.yandexMapsInit();
+    $(window).bind("pageshow", function(event) {
+      if (event.originalEvent.persisted) {
+        window.location.reload()
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    if (document.readyState === 'complete') {
+      console.log('readyState === \'complete\' ngAfterViewInit');
+      this.oldScripts();
+    }
+
+      console.log(document.readyState);
+      this.oldScripts();
   }
 
   goLogin() {
