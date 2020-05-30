@@ -10,6 +10,9 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DashboardHeaderComponent } from './shared/dashboard-header/dashboard-header.component';
+import { OrderModalComponent } from './shared/order-modal/order-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,14 +21,17 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HomeComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
-    AccessDeniedComponent
+    AccessDeniedComponent,
+    DashboardHeaderComponent,
+    OrderModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [HttpClient],
   exports: [
