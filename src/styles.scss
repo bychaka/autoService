@@ -9,3 +9,21 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts" !default;
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.table th, .table td {
+  vertical-align: middle !important;
+}
+
+.tabset-wrap{
+  position: relative;
+  width: 100%;
+}
+
+.make-order {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

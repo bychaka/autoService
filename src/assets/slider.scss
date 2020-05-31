@@ -114,8 +114,13 @@ $font-raleway: 'Arial';
     color: rgba(255, 255, 255, 0.7);
   }
   .stars {
+    font-size: 1.5rem;
     display: flex;
     justify-content: center;
+    .rate-star{
+      color: #FFB802;
+      font-size: 1.5rem;
+    }
     .fa-star {
       margin-right: 5px;
       color:  #FFF72C;

@@ -1,0 +1,37 @@
+.btn {
+  .fa {
+    font-size: 1.5rem;
+  }
+  &.btn-delete {
+    position: relative;
+    .fa {
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+.total {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.total-title {
+  margin-right: 15px;
+}
+
+.rate {
+  margin-top: 40px;
+}
+
+.rate-star {
+  font-size: 30px;
+}
+
+.comment-response{
+  color: green;
+  margin-top: 5px;
+  margin-left: 45px;
+}

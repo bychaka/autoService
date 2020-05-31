@@ -2,8 +2,23 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import { HostListener } from '@angular/core';
 import {LocationStrategy} from "@angular/common";
+import {MainService} from "../shared/main.service";
 declare var $: any;
 declare var ymaps:any;
+
+const defaultComment = [
+    {
+      rating: 5,
+      comment:"Крутой салон занимающийся большим спектром работ.\n" +
+        "              На мазду делал замену оптики и тд. Все работы были выполнены\n" +
+        "              в срок и качественно. Парням огромное спасибо.",
+      date:"12.11.20",
+      userName:"Дима",
+      userId:"5ed060b6343e351cc07ac78c",
+      orderId:"5ed363a36720d335c4c8f7f3",
+      car:"Мазда 6"
+    }
+  ];
 
 @Component({
   selector: 'app-home',
@@ -13,8 +28,9 @@ declare var ymaps:any;
 export class HomeComponent implements OnInit, AfterViewInit {
   @HostListener('window:popstate', ['$event'])
   yandexMap: any;
+  comments = [];
 
-  constructor(private router: Router, location: LocationStrategy) {
+  constructor(private router: Router, location: LocationStrategy, private mainService: MainService) {
     location.onPopState(() => {
       setTimeout(() => {
         this.oldScripts();
@@ -23,6 +39,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.mainService.getComments().then(result => {
+      if (result.length) {
+        this.comments = result;
+        console.log(this.comments);
+      } else {
+        this.comments = defaultComment;
+      }
+    });
     this.yandexMapsInit();
     $(window).bind("pageshow", function(event) {
       if (event.originalEvent.persisted) {

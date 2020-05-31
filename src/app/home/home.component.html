@@ -323,58 +323,16 @@
       <input class="slider__nav" type="radio" name="slider" title="slide2"/>
       <input class="slider__nav" type="radio" name="slider" title="slide3"/>
       <div class="slider__inner">
-        <div class="slider__contents">
+        <div class="slider__contents" *ngFor="let item of comments">
           <div class="slider-item__header">
-            <div class="name">Дима</div>
-            <div class="date">12.11.20 (Мазда 6)</div>
+            <div class="name">{{item.userName || ''}}</div>
+            <div class="date">{{item.date}} {{item.car || ''}}</div>
             <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
+              <ngb-rating class="rate-star" [(rate)]="item.rating" [max]="5"></ngb-rating>
             </div>
           </div>
           <div class="slider-item__description">
-            <p class="description-content">Крутой салон занимающийся большим спектром работ.
-              На мазду делал замену оптики и тд. Все работы были выполнены
-              в срок и качественно. Парням огромное спасибо.</p>
-          </div>
-        </div>
-        <div class="slider__contents">
-          <div class="slider-item__header">
-            <div class="name">Сергей</div>
-            <div class="date">12.11.20 (Мазда 6)</div>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="slider-item__description">
-            <p class="description-content">Крутой салон занимающийся большим спектром работ.
-              На мазду делал замену оптики и тд. Все работы были выполнены
-              в срок и качественно. Парням огромное спасибо.</p>
-          </div>
-        </div>
-        <div class="slider__contents">
-          <div class="slider-item__header">
-            <div class="name">Алексей</div>
-            <div class="date">12.11.20 (Мазда 6)</div>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="slider-item__description">
-            <p class="description-content">Крутой салон занимающийся большим спектром работ.
-              На мазду делал замену оптики и тд. Все работы были выполнены
-              в срок и качественно. Парням огромное спасибо.</p>
+            <p class="description-content">{{item.comment || ''}}</p>
           </div>
         </div>
       </div>
