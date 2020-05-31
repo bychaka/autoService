@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardHeaderComponent } from './shared/dashboard-header/dashboard-header.component';
 import { OrderModalComponent } from './shared/order-modal/order-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {DecimalPipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, DecimalPipe],
   exports: [
     HttpClientModule],
   bootstrap: [AppComponent]

@@ -3,58 +3,61 @@ import {DecimalPipe} from "@angular/common";
 import {map, startWith} from "rxjs/operators";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
+import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {OrderModalComponent} from "../shared/order-modal/order-modal.component";
+import {IOrder} from "../shared/interfaces";
+import {MainService} from "../shared/main.service";
 
-interface Order {
-  _id: any;
-  email: any;
-  status: any;
-  rating: any;
-  car: any;
-  services?: any;
-}
-
-const ORDERS: Order[] = [
-  {
-    _id: '12312',
-    email: 'alex@alex.com',
-    status: 60,
-    rating: 4,
-    car: 'Mazda 6'
-  }
-];
-
-function search(text: string, pipe: PipeTransform): Order[] {
-  return ORDERS.filter(order => {
-    const term = text.toLowerCase();
-    return order.email.toLowerCase().includes(term)
-      || pipe.transform(order._id).includes(term)
-      || pipe.transform(order.car).includes(term);
-  });
-}
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss'],
-  providers: [DecimalPipe]
+  styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
-
-  orders$: Observable<Order[]>;
+  ORDERS: IOrder[] = [];
+  orders$: Observable<IOrder[]>;
   filter = new FormControl('');
-  constructor(pipe: DecimalPipe) {
-    this.orders$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe))
-    );}
+  constructor(private pipe: DecimalPipe, private modalService: NgbModal, private mainService: MainService) {}
 
   ngOnInit(): void {
+    this.mainService.getOrders().then(orders => {
+      this.ORDERS = orders;
+      this.orders$ = this.filter.valueChanges.pipe(
+        startWith(''),
+        map(text => this.search(text, this.pipe))
+      );
+    }, error => console.error(error));
   }
 
-  makeOrder() {
-    console.log('kek');
+  openOrder(order?:any, mode?:any) {
+    const modalInstance: NgbModalRef = this.modalService.open(OrderModalComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      size: 'lg'
+    });
+    modalInstance.componentInstance.order = order || null;
+    modalInstance.componentInstance.modalMode = mode || null;
+    modalInstance.result.then(result => {
+      this.mainService.saveOrder(result).then(orders => {
+        this.ORDERS = orders;
+        window.location.reload()
+      });
+    }, reason => {
+      console.warn(reason);
+    })
   }
 
-  goToOrder(order) {
+  search(text: string, pipe: PipeTransform): IOrder[] {
+    return this.ORDERS.filter(order => {
+      const term = text.toLowerCase();
+      return order.email.toLowerCase().includes(term)
+        || order._id.toLowerCase().includes(term)
+        || pipe.transform(order.cost).includes(term)
+        || order.car.toLowerCase().includes(term);
+    });
+  }
 
+  toInt(progress: any) {
+    return parseInt(progress);
   }
 }

@@ -1,1 +1,72 @@
-<p>order-modal works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{modalTitle}}</h4>
+  <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="orderForm">
+    <div class="form-group">
+      <label for="brand">Марка авто:</label>
+      <input id="brand" formControlName="car" type="text" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="email">Email заказчика:</label>
+      <input id="email" formControlName="email" type="text" class="form-control"/>
+    </div>
+    <div formArrayName="servicePoints">
+      <div class="d-flex" *ngFor="let item of servicePoints.controls; let pointIndex=index" [formGroupName]="pointIndex">
+        <div class="form-group col-5">
+          <label [attr.for]="'servicePoint_' + pointIndex">
+            Услуга:
+          </label>
+          <input type="text" class="form-control" [attr.id]="'servicePoint_' + pointIndex" formControlName="point" [readOnly]="isEditMode && !loginService.isRoleAdmin"/>
+        </div>
+        <div class="form-group col-3">
+          <label [attr.for]="'progress_' + pointIndex">
+            Прогресс, %:
+          </label>
+          <input type="number" class="form-control" [attr.id]="'progress_' + pointIndex" formControlName="progress" min="0" max="100" [readOnly]="!loginService.isRoleAdmin"/>
+        </div>
+        <div class="form-group col-3">
+          <label [attr.for]="'cost_' + pointIndex">
+            Цена, руб:
+          </label>
+          <input type="number" class="form-control" [attr.id]="'cost_' + pointIndex" formControlName="cost"  min="0" [readOnly]="!loginService.isRoleAdmin"/>
+        </div>
+        <div class="form-group col-1 d-flex justify-content-center">
+          <button *ngIf="isCreateMode || (isEditMode && loginService.isRoleAdmin)" class="btn btn-delete"><i class="fa fa-trash-alt" (click)="deleteServicePoint(pointIndex)"  ngbPopover="Удалить" triggers="mouseenter:mouseleave"></i></button>
+        </div>
+      </div>
+      <button *ngIf="isCreateMode || (isEditMode && loginService.isRoleAdmin)" class="btn" ngbPopover="Добавить услугу" triggers="mouseenter:mouseleave"><i class="fa fa-plus-circle" (click)="addServicePoint()"></i></button>
+    </div>
+    <div class="total">
+      <div class="form-group col-5">
+        <h6><span class="total-title">Всего услуг:</span>   {{totalServices}}</h6>
+      </div>
+      <div class="form-group col-3">
+        <h6><span class="total-title">Итого, %:</span>   {{totalProgressAndCost.progress}}</h6>
+      </div>
+      <div class="form-group col-3">
+        <h6><span class="total-title">Итого, руб:</span>   {{totalProgressAndCost.cost}}</h6>
+      </div>
+    </div>
+  </form>
+
+  <div class="form-group rate" [formGroup]="orderRate" *ngIf="totalProgressAndCost.progress === 100 && !loginService.isRoleAdmin">
+    <h4 class="rate-title">Заказ выполнен! Сделайте оценку работы и оставьте отзыв.</h4>
+    <ngb-rating #rate class="rate-star" [(rate)]="orderRatingValue" [max]="5" (click)="setRate()"></ngb-rating>
+    <div class="form-group">
+      <label for="comment">Комментарий</label>
+      <textarea class="form-control" id="comment" rows="3" formControlName="comment"></textarea>
+    </div>
+
+    <button class="btn" (click)="saveComment()"><i class="fa fa-share-square"></i> Сохранить отзыв</button> <p class="comment-response" *ngIf="isRateSent">Отзыв оставлен!</p>
+
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Отмена</button>
+  <button type="button" class="btn btn-primary" (click)="save()"  ngbAutofocus >ОК</button>
+</div>

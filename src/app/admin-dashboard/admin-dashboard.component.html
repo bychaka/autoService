@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="tabset-wrap">
-      <button class="btn btn-outline-primary make-order" (click)="makeOrder()">Cделать заказ</button><ngb-tabset #t="ngbTabset">
+      <button class="btn btn-outline-primary make-order" (click)="openOrder(null, 'create')">Cделать заказ</button><ngb-tabset #t="ngbTabset">
       <ngb-tab id="tab-selectbyid1" title="Заказы">
         <ng-template ngbTabContent>
           <form>
@@ -15,41 +15,34 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th scope="col">Заказ №</th>
+              <th scope="col">Заказ #</th>
               <th scope="col">Марка</th>
               <th scope="col">Клиент</th>
               <th scope="col">Прогресс</th>
-              <th scope="col">Оценка</th>
+              <th scope="col">Стоимость, руб</th>
               <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let order of orders$ | async; index as i">
               <th scope="row">{{order._id}}</th>
-<!--              <th scope="row">{{ i + 1 }}</th>-->
               <td>
                 <ngb-highlight [result]="order.car" [term]="filter.value"></ngb-highlight>
               </td>
               <td>
                 <ngb-highlight [result]="order.email" [term]="filter.value"></ngb-highlight>
               </td>
-              <td><ngb-progressbar [showValue]="true" type="success" [value]="order.status"></ngb-progressbar></td>
-              <td><ngb-rating [(rate)]="order.rating" [max]="5"></ngb-rating></td>
               <td>
-                <button class="btn"><i class="fa fa-arrow-right" (click)="goToOrder(order)"></i></button></td>
+                <ngb-progressbar [showValue]="true" type="success" [value]="toInt(order.progress)"></ngb-progressbar>
+              </td>
+              <td>
+                <ngb-highlight [result]="order.cost || '-//-'" [term]="filter.value"></ngb-highlight>
+              </td>
+              <td>
+                <button class="btn" (click)="openOrder(order, 'edit')"><i class="fa fa-arrow-right"></i></button></td>
             </tr>
             </tbody>
           </table>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab id="tab-selectbyid2" title="Отзывы">
-        <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-          <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-            craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-            cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-            yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-            shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-            sint qui sapiente accusamus tattooed echo park.</p>
         </ng-template>
       </ngb-tab>
     </ngb-tabset>
