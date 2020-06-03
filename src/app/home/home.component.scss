@@ -39,6 +39,9 @@ html {
     /* identical to box height, or 142px */
     letter-spacing: 0.05em;
     color: #FFF73D;
+    img {
+      width: 340px;
+    }
   }
   .header-tel {
     font-family: $font-fira-sans;
@@ -611,7 +614,7 @@ html {
 .logo {
   height: 80px;
   width: 100%;
-  background: url('../../assets/images/logo.svg') no-repeat;
+  background: url('../../assets/images/logo_main.svg') no-repeat;
   background-size: contain;
 }
 
@@ -853,6 +856,10 @@ html {
 
 .orderSent{
   color: green;
+}
+
+img.form-logo{
+  width: 208px;
 }
 
 @import'../../assets/slider';
