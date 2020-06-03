@@ -160,6 +160,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.orderSent = false;
     if (this.orderHome.status === 'VALID') {
       const formValues = {
+        progress: 0,
         name: this.orderHome.value.name,
         email: this.orderHome.value.email,
         car: this.orderHome.value.car,
