@@ -2,12 +2,12 @@
 <header class="header">
   <div class="container-fluid">
     <div class="row pt-3">
-      <div class="col-9">
+      <div class="col-11 col-xl-8">
         <div class="pl-3 header-logo">
           <img src="../../assets/images/logo.svg" alt="logo">
         </div>
       </div>
-      <div class="col-2 d-flex align-items-center">
+      <div class="d-none d-xl-flex col-xl-3 align-items-center">
         <p class="header-tel">+375 29 319 08 61</p>
       </div>
       <div class="col-1 align-items-center">
@@ -22,7 +22,7 @@
   </div>
   <div class="container-fluid">
     <div class="row mt-5">
-      <div class="col-6">
+      <div class="col-12 col-lg-6">
         <div class="section-decription">
           <div class="welcom-wrap d-flex flex-column align-items-center">
             <div class="welcom-title">
@@ -51,8 +51,8 @@
           </div>
         </div>
       </div>
-      <div class="col-5"></div>
-      <div class="col-1">
+      <div class="d-none d-lg-block col-lg-5"></div>
+      <div class="d-none d-lg-block col-lg-1">
         <div class="social-links-header">
           <a href="" class="icon"><i class="fab fa-facebook-f"></i></a>
           <a href="" class="icon"><i class="fab fa-instagram"></i></a>
@@ -63,9 +63,9 @@
   </div>
   <div class="header-bottom container-fluid">
     <div class="row">
-      <div class="col-4 text-center">г. Минск, ул. Дубовича, 11</div>
-      <div class="col-4 text-center">+ 375 29 319 08 61</div>
-      <div class="col-4 text-center">Время работы: ежедневно, 9:00 - 20:00</div>
+      <div class="col-12 col-lg-4 mb-2 mb-lg-0 text-center">г. Минск, ул. Дубовича, 11</div>
+      <div class="col-12 col-lg-4 mb-2 mb-lg-0 text-center">+ 375 29 319 08 61</div>
+      <div class="col-12 col-lg-4 mb-2 mb-lg-0 text-center">Время работы: ежедневно, 9:00 - 20:00</div>
     </div>
   </div>
 </header>
@@ -186,8 +186,8 @@
 
 <div class="goals">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-4">
+    <div class="row flex-wrap">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="goal-item-wrap">
           <div class="card">
             <img class="card-img-top" src="../../assets/images/1.png" alt="Card image cap">
@@ -200,7 +200,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="goal-item-wrap">
           <div class="card">
             <img class="card-img-top" src="../../assets/images/2.png" alt="Card image cap">
@@ -213,7 +213,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="goal-item-wrap">
           <div class="card">
             <img class="card-img-top" src="../../assets/images/4.png" alt="Card image cap">
@@ -226,9 +226,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="goal-item-wrap">
           <div class="card">
             <img class="card-img-top" src="../../assets/images/2.png" alt="Card image cap">
@@ -241,7 +239,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="goal-item-wrap">
           <div class="card">
             <img class="card-img-top" src="../../assets/images/12.png" alt="Card image cap">
@@ -254,7 +252,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-lg-6 col-xl-4">
         <div class="goal-item-wrap">
           <div class="card">
             <img class="card-img-top" src="../../assets/images/1.png" alt="Card image cap">
@@ -274,7 +272,7 @@
 <div id="send-order" class="send-order">
   <div class="container-fluid">
     <div class="row">
-      <div class="send-order-image"></div>
+      <div class="d-none d-lg-block send-order-image"></div>
       <div class="form">
         <form class="contact-form">
           <div class="form-group">
@@ -290,7 +288,7 @@
             <input type="email" class="form-control contact-input" placeholder="Ваше имя...">
           </div>
           <div class="form-group">
-            <input type="email" class="form-control contact-input" placeholder="Ваш телефон...">
+            <input type="email" class="form-control contact-input" placeholder="Ваш email...">
           </div>
           <div class="form-group">
             <input type="email" class="form-control contact-input" placeholder="Марка автомобиля...">
@@ -298,11 +296,17 @@
           <div class="form-group">
             <select class="form-control contact-input" id="exampleFormControlSelect1">
               <option selected>Выбрать услугу...</option>
-              <option>Услуга 1</option>
-              <option>Услуга 2</option>
-              <option>Услуга 3</option>
-              <option>Услуга 4</option>
-              <option>Услуга 5</option>
+              <option>Стапельные работы</option>
+              <option>Жестяные работы</option>
+              <option>Арматурные работы</option>
+              <option>Покраска втомобиля</option>
+              <option>Локальная покраска</option>
+              <option>Покраска мотоцикла</option>
+              <option>Аброзивная полировка</option>
+              <option>Легкая полировка блеск</option>
+              <option>Защитная полировка</option>
+              <option>Антикоррозийная обработка кузова</option>
+              <option>Удаление вмятин без покраски</option>
             </select>
           </div>
           <button type="submit" class="btn btn-light mb-2 btn-contact">Отправить</button>
@@ -319,16 +323,14 @@
   <div class="slider-client">
 
     <div class="slider">
-      <input class="slider__nav" type="radio" name="slider" title="slide1" checked="checked"/>
-      <input class="slider__nav" type="radio" name="slider" title="slide2"/>
-      <input class="slider__nav" type="radio" name="slider" title="slide3"/>
+      <input *ngFor="let item of getRandomComments; let idx = index" class="slider__nav" type="radio" name="slider" title="{{'slide' + idx}}" [checked]="idx === 1" />
       <div class="slider__inner">
-        <div class="slider__contents" *ngFor="let item of comments">
+        <div class="slider__contents" *ngFor="let item of getRandomComments">
           <div class="slider-item__header">
             <div class="name">{{item.userName || ''}}</div>
             <div class="date">{{item.date}} {{item.car || ''}}</div>
             <div class="stars">
-              <ngb-rating class="rate-star" [(rate)]="item.rating" [max]="5"></ngb-rating>
+              <ngb-rating class="rate-star" [(rate)]="item.rating" [max]="5" [readonly]="true"></ngb-rating>
             </div>
           </div>
           <div class="slider-item__description">
@@ -400,7 +402,7 @@
 <footer class="footer-page">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-3">
+      <div class="col-12 col-md-6 col-xl-3 mb-5 mb-xl-0">
         <div class="footer-social">
           <div class="logo"></div>
           <p class="footer-social-description">Профессионлайны
@@ -413,7 +415,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-6 col-md-6 col-xl-3 mb-5 mb-xl-0">
         <div class="block-links">
           <div class="link-with-icon">
             <div class="link-with-icon_icon"></div>
@@ -437,7 +439,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3 justify-content-center">
+      <div class="col-6 col-md-6 col-xl-3 mb-5 mb-xl-0 justify-content-center">
         <div class="address-wrap">
           <div class="address">
             <p>г. Минск, ул. Дубовича, 11</p>
@@ -447,7 +449,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-md-6 col-xl-3 mb-3 mb-xl-0">
         <div id="map"></div>
       </div>
     </div>

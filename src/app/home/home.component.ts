@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import { HostListener } from '@angular/core';
 import {LocationStrategy} from "@angular/common";
 import {MainService} from "../shared/main.service";
+import {sampleSize} from "lodash"
 declare var $: any;
 declare var ymaps:any;
 
@@ -38,11 +39,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
+  get getRandomComments() {
+    return sampleSize(this.comments, 3);
+  }
+
   ngOnInit(): void {
     this.mainService.getComments().then(result => {
       if (result.length) {
         this.comments = result;
-        console.log(this.comments);
       } else {
         this.comments = defaultComment;
       }
@@ -56,17 +60,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (document.readyState === 'complete') {
-      console.log('readyState === \'complete\' ngAfterViewInit');
-      this.oldScripts();
-    }
-
-      console.log(document.readyState);
       this.oldScripts();
   }
 
   goLogin() {
-    console.log('kek');
     this.router.navigate(['login']);
   }
 
