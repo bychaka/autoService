@@ -843,5 +843,17 @@ html {
   width: 200px;
 }
 
+.form-group {
+  position: relative;
+  span {
+    position: absolute;
+    top: 50px;
+  }
+}
+
+.orderSent{
+  color: green;
+}
+
 @import'../../assets/slider';
 @import "mobile";

@@ -274,7 +274,7 @@
     <div class="row">
       <div class="d-none d-lg-block send-order-image"></div>
       <div class="form">
-        <form class="contact-form">
+        <form class="contact-form" [formGroup]="orderHome" (ngSubmit)="sendOrder()">
           <div class="form-group">
             <img src="../../assets/images/logo-gray.svg" alt="logo">
           </div>
@@ -285,17 +285,20 @@
             <p class="order-description">Оставить заявку и мы перезвоним вам в течение 15 минут.</p>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control contact-input" placeholder="Ваше имя...">
+            <input type="text" class="form-control contact-input" placeholder="Ваше имя*..." formControlName="name">
+            <span class="error" *ngIf="orderHome.controls.name.status === 'INVALID' ">Заполните поле</span>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control contact-input" placeholder="Ваш email...">
+            <input type="email" class="form-control contact-input" placeholder="Ваш email*..." formControlName="email">
+            <span class="error" *ngIf="orderHome.controls.email.status === 'INVALID' ">Заполните поле</span>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control contact-input" placeholder="Марка автомобиля...">
+            <input type="text" class="form-control contact-input" placeholder="Марка автомобиля*..." formControlName="car">
+            <span class="error" *ngIf="orderHome.controls.car.status === 'INVALID' ">Заполните поле</span>
           </div>
           <div class="form-group">
-            <select class="form-control contact-input" id="exampleFormControlSelect1">
-              <option selected>Выбрать услугу...</option>
+            <select class="form-control contact-input" id="exampleFormControlSelect1" formControlName="servicePoints">
+              <option selected>Выбрать услугу*...</option>
               <option>Стапельные работы</option>
               <option>Жестяные работы</option>
               <option>Арматурные работы</option>
@@ -308,8 +311,10 @@
               <option>Антикоррозийная обработка кузова</option>
               <option>Удаление вмятин без покраски</option>
             </select>
+            <span class="error" *ngIf="orderHome.controls.servicePoints.status === 'INVALID' ">Заполните поле</span>
           </div>
           <button type="submit" class="btn btn-light mb-2 btn-contact">Отправить</button>
+          <p class="orderSent" *ngIf="orderSent">Заявка отправлена!</p>
         </form>
       </div>
     </div>

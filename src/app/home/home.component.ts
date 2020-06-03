@@ -4,6 +4,7 @@ import { HostListener } from '@angular/core';
 import {LocationStrategy} from "@angular/common";
 import {MainService} from "../shared/main.service";
 import {sampleSize} from "lodash"
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 declare var $: any;
 declare var ymaps:any;
 
@@ -30,8 +31,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @HostListener('window:popstate', ['$event'])
   yandexMap: any;
   comments = [];
+  orderHome: FormGroup;
+  servicePointsControlsConfig = {
+    point: '',
+    progress: 0,
+    cost: 0
+  };
 
-  constructor(private router: Router, location: LocationStrategy, private mainService: MainService) {
+  orderSent = false;
+
+  constructor(private router: Router, location: LocationStrategy, private mainService: MainService, private fb: FormBuilder) {
     location.onPopState(() => {
       setTimeout(() => {
         this.oldScripts();
@@ -56,6 +65,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       if (event.originalEvent.persisted) {
         window.location.reload()
       }
+    });
+    this.orderHome = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      car: ['', Validators.required],
+      servicePoints: ['Выбрать услугу*...', Validators.required]
     });
   }
 
@@ -139,6 +154,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.yandexMap.geoObjects
           .add(new ymaps.Placemark([53.946975, 27.682178]));
     });
+  }
+
+  sendOrder() {
+    this.orderSent = false;
+    if (this.orderHome.status === 'VALID') {
+      const formValues = {
+        name: this.orderHome.value.name,
+        email: this.orderHome.value.email,
+        car: this.orderHome.value.car,
+        servicePoints: [{
+          point: this.orderHome.value.servicePoints,
+          progress: 0,
+          cost: 0
+        }]
+      };
+      this.mainService.saveOrder(formValues).then(orders => {
+        this.orderSent = true;
+      });
+    }
   }
 }
 

@@ -27,3 +27,11 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts" !default;
   right: 0;
   top: 0;
 }
+
+.inavlid-field {
+  border-color: red;
+}
+
+.error {
+  color: red;
+}

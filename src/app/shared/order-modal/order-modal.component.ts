@@ -28,7 +28,6 @@ export class OrderModalComponent implements OnInit {
     public modal: NgbActiveModal, private fb: FormBuilder, public loginService: LoginService, private mainService: MainService) { }
 
   ngOnInit(): void {
-    console.log(this.order);
     this.orderForm = this.fb.group({
       car: [this.order ? this.order.car : '', Validators.required],
       email: [this.order ? this.order.email : this.loginService.isRoleAdmin ? '' : this.loginService.loggedUser.email, Validators.required],
@@ -99,9 +98,6 @@ export class OrderModalComponent implements OnInit {
   }
 
   save() {
-    // if (this.modalMode === 'edit' && this.loginService.isRoleAdmin) {
-    //   console.log('admin');
-    // }
     let orderFormValue = this.orderForm.value;
     orderFormValue.cost = this.totalProgressAndCost.cost;
     orderFormValue.progress = this.totalProgressAndCost.progress;
