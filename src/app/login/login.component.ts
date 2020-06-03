@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   isLogin = true;
+  loginError = false;
 
   constructor(private loginService: LoginService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -38,21 +39,37 @@ export class LoginComponent implements OnInit {
   }
 
   tabClick(e, target) {
+    this.loginError = false;
     this.isLogin = target === '#login';
     $(e.target).fadeIn(600);
   }
 
+  get errorField() {
+    return this.loginForm.controls.email.status === 'INVALID' || this.loginError ? 'inavlid-field' : '';
+  }
 
   loginUser() {
-    this.loginService.login(this.loginForm.value).then(user => {
-      this.router.navigate(this.loginService.isRoleAdmin ? ['admin'] : [`user/${user._id}`]);
-    })
+    if (this.loginForm.status === 'VALID') {
+      this.loginError = false;
+      this.loginService.login(this.loginForm.value).then(user => {
+        this.router.navigate(this.loginService.isRoleAdmin ? ['admin'] : [`user/${user._id}`]);
+      }, error => {
+        this.loginError = true;
+        console.error(error);
+      })
+    }
   }
 
   registerUser() {
-    this.loginService.register(this.registerForm.value).then(user => {
-      this.router.navigate([`user/${user._id}`]);
-    })
+    if (this.registerForm.status === 'VALID') {
+      this.loginError = false;
+      this.loginService.register(this.registerForm.value).then(user => {
+        this.router.navigate([`user/${user._id}`]);
+      }, error => {
+        this.loginError = true;
+        console.error(error);
+      })
+    }
   }
 
 }

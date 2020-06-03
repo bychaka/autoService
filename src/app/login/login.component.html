@@ -15,18 +15,19 @@
           <label>
             Email адрес<span class="req">*</span>
           </label>
-          <input type="email" required autocomplete="off" formControlName="email"/>
+          <input type="email" required autocomplete="off" formControlName="email" [ngClass]="loginForm.controls.email.status === 'INVALID' || loginError ? 'inavlid-field' : ''" />
+          <span class="error" *ngIf="loginForm.controls.email.status === 'INVALID'">Введите email</span>
         </div>
 
         <div class="field-wrap">
           <label>
             Пароль<span class="req">*</span>
           </label>
-          <input type="password"required autocomplete="off" formControlName="password"/>
+          <input type="password"required autocomplete="off" formControlName="password" [ngClass]="loginForm.controls.password.status === 'INVALID' || loginError ? 'inavlid-field' : ''" />
+          <span class="error" *ngIf="loginForm.controls.password.status === 'INVALID' ">Введите пароль</span>
         </div>
 
-        <!--           <p class="forgot"><a href="#">Забыли парольd?</a></p> -->
-
+        <p class="error" *ngIf="loginError">Неверный логин или пароль*</p>
         <button class="button button-block">Войти</button>
 
       </form>
@@ -42,7 +43,8 @@
           <label>
             Ваш никнейм<span class="req">*</span>
           </label>
-          <input type="text" required autocomplete="off" formControlName="name"/>
+          <input type="text" required autocomplete="off" formControlName="name" [ngClass]="registerForm.controls.name.status === 'INVALID' ? 'inavlid-field' : ''" />
+          <span class="error" *ngIf="registerForm.controls.name.status === 'INVALID'">Введите ваше имя</span>
         </div>
 
 
@@ -50,18 +52,20 @@
           <label>
             Email адрес<span class="req">*</span>
           </label>
-          <input type="email"required autocomplete="off" formControlName="email"/>
+          <input type="email"required autocomplete="off" formControlName="email" [ngClass]="registerForm.controls.email.status === 'INVALID' || loginError ? 'inavlid-field' : ''" />
+          <span class="error" *ngIf="registerForm.controls.email.status === 'INVALID'">Введите ваш email</span>
         </div>
 
         <div class="field-wrap">
           <label>
             Пароль<span class="req">*</span>
           </label>
-          <input type="password"required autocomplete="off" formControlName="password"/>
+          <input type="password"required autocomplete="off" formControlName="password" [ngClass]="registerForm.controls.password.status === 'INVALID'  ? 'inavlid-field' : ''" />
+          <span class="error" *ngIf="registerForm.controls.password.status === 'INVALID' ">Введите пароль</span>
         </div>
 
+        <p class="error" *ngIf="loginError">Пользователь с данным email уже существует*</p>
         <button type="submit" class="button button-block">Создать Ваш профиль</button>
-
       </form>
 
     </div>
